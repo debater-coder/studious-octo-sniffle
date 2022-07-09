@@ -23,9 +23,7 @@ class App extends Experience {
 
     player.style.visibility = "hidden"
 
-    player.experimentalCurrentThreeJSPuzzleObject(() => {
-
-    }).then((puzzle3d) => {
+    player.experimentalCurrentThreeJSPuzzleObject(() => {}).then((puzzle3d) => {
       this.scene.add(puzzle3d)
       this.gui.add(player, "play")
       player.play();
