@@ -21,12 +21,14 @@ class App extends Experience {
       }),
     );
 
-    player.style.height = "3.5em"
+    player.style.visibility = "hidden"
 
     player.experimentalCurrentThreeJSPuzzleObject(() => {
 
     }).then((puzzle3d) => {
       this.scene.add(puzzle3d)
+      this.gui.add(player, "play")
+      player.play();
     })
 
   }
