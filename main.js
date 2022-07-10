@@ -15,20 +15,44 @@ class App extends Experience {
 
     const player = document.body.appendChild(
       new TwistyPlayer({
-        alg: "R U R' U' R' F R2 U' R' U' R U R' F'",
         puzzle: "3x3x3",
         hintFacelets: "none",
-      }),
+      })
     );
 
-    player.style.visibility = "hidden"
+    player.style.visibility = "hidden";
 
-    player.experimentalCurrentThreeJSPuzzleObject(() => {}).then((puzzle3d) => {
-      this.scene.add(puzzle3d)
-      this.gui.add(player, "play")
-      player.play();
-    })
-
+    player
+      .experimentalCurrentThreeJSPuzzleObject(() => {})
+      .then((puzzle3d) => {
+        this.scene.add(puzzle3d);
+        const move = {
+          R: () => player.experimentalAddMove("R"),
+          U: () => player.experimentalAddMove("U"),
+          D: () => player.experimentalAddMove("D"),
+          F: () => player.experimentalAddMove("F"),
+          L: () => player.experimentalAddMove("L"),
+          B: () => player.experimentalAddMove("B"),
+          R_: () => player.experimentalAddMove("R'"),
+          U_: () => player.experimentalAddMove("U'"),
+          D_: () => player.experimentalAddMove("D'"),
+          F_: () => player.experimentalAddMove("F'"),
+          L_: () => player.experimentalAddMove("L'"),
+          B_: () => player.experimentalAddMove("B'"),
+        };
+        this.gui.add(move, "R");
+        this.gui.add(move, "U");
+        this.gui.add(move, "F");
+        this.gui.add(move, "D");
+        this.gui.add(move, "L");
+        this.gui.add(move, "B");
+        this.gui.add(move, "R_");
+        this.gui.add(move, "U_");
+        this.gui.add(move, "F_");
+        this.gui.add(move, "D_");
+        this.gui.add(move, "L_");
+        this.gui.add(move, "B_");
+      });
   }
 }
 
