@@ -13,45 +13,59 @@ class App extends Experience {
 
     this.camera.position.set(6, 4, 8);
 
-    const player = document.body.appendChild(
+    this.player = document.body.appendChild(
       new TwistyPlayer({
         puzzle: "3x3x3",
         hintFacelets: "none",
       })
     );
 
-    player.style.visibility = "hidden";
+    this.player.style.visibility = "hidden";
 
-    player
+    this.player
       .experimentalCurrentThreeJSPuzzleObject(() => {})
       .then((puzzle3d) => {
         this.scene.add(puzzle3d);
-        const move = {
-          R: () => player.experimentalAddMove("R"),
-          U: () => player.experimentalAddMove("U"),
-          D: () => player.experimentalAddMove("D"),
-          F: () => player.experimentalAddMove("F"),
-          L: () => player.experimentalAddMove("L"),
-          B: () => player.experimentalAddMove("B"),
-          R_: () => player.experimentalAddMove("R'"),
-          U_: () => player.experimentalAddMove("U'"),
-          D_: () => player.experimentalAddMove("D'"),
-          F_: () => player.experimentalAddMove("F'"),
-          L_: () => player.experimentalAddMove("L'"),
-          B_: () => player.experimentalAddMove("B'"),
-        };
-        this.gui.add(move, "R");
-        this.gui.add(move, "U");
-        this.gui.add(move, "F");
-        this.gui.add(move, "D");
-        this.gui.add(move, "L");
-        this.gui.add(move, "B");
-        this.gui.add(move, "R_");
-        this.gui.add(move, "U_");
-        this.gui.add(move, "F_");
-        this.gui.add(move, "D_");
-        this.gui.add(move, "L_");
-        this.gui.add(move, "B_");
+        document.addEventListener("keydown", (event) => {
+          switch (event.key) {
+            case "r":
+              this.player.experimentalAddMove("R");
+              break;
+            case "R":
+              this.player.experimentalAddMove("R'");
+              break;
+            case "u":
+              this.player.experimentalAddMove("U");
+              break;
+            case "U":
+              this.player.experimentalAddMove("U'");
+              break;
+            case "f":
+              this.player.experimentalAddMove("F");
+              break;
+            case "F":
+              this.player.experimentalAddMove("F'");
+              break;
+            case "l":
+              this.player.experimentalAddMove("L");
+              break;
+            case "L":
+              this.player.experimentalAddMove("L'");
+              break;
+            case "d":
+              this.player.experimentalAddMove("D");
+              break;
+            case "D":
+              this.player.experimentalAddMove("D'");
+              break;
+            case "b":
+              this.player.experimentalAddMove("B");
+              break;
+            case "B":
+              this.player.experimentalAddMove("B'");
+              break;
+          }
+        });
       });
   }
 }
