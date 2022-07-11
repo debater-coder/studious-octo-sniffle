@@ -16,7 +16,6 @@ class App extends Experience {
     this.player = document.body.appendChild(
       new TwistyPlayer({
         puzzle: "3x3x3",
-        hintFacelets: "none",
       })
     );
 
@@ -63,6 +62,24 @@ class App extends Experience {
               break;
             case "B":
               this.player.experimentalAddMove("B'");
+              break;
+            case "x":
+              this.player.experimentalAddMove("x");
+              break;
+            case "X":
+              this.player.experimentalAddMove("x'");
+              break;
+            case "y":
+              this.player.experimentalAddMove("y");
+              break;
+            case "Y":
+              this.player.experimentalAddMove("y'");
+              break;
+            case "z":
+              this.player.experimentalAddMove("z");
+              break;
+            case "z":
+              this.player.experimentalAddMove("z'");
               break;
           }
         });
