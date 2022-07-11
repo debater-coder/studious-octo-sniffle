@@ -1,7 +1,7 @@
 import "./style.css";
 import Experience from "./Experience";
-import * as THREE from "three";
 import { TwistyPlayer } from "cubing/twisty";
+import { randomScrambleForEvent } from "cubing/scramble";
 
 class App extends Experience {
   constructor() {
@@ -25,6 +25,18 @@ class App extends Experience {
       .experimentalCurrentThreeJSPuzzleObject(() => {})
       .then((puzzle3d) => {
         this.scene.add(puzzle3d);
+
+        let scramble = {
+          scramble: async () => {
+            const scramble = await randomScrambleForEvent("333");
+            this.player.experimentalSetupAlg = scramble;
+          },
+        };
+
+        this.gui
+          .add(scramble, "scramble")
+          .name("Scramble (may take a few seconds)");
+
         document.addEventListener("keydown", (event) => {
           switch (event.key) {
             case "r":
@@ -78,7 +90,7 @@ class App extends Experience {
             case "z":
               this.player.experimentalAddMove("z");
               break;
-            case "z":
+            case "Z":
               this.player.experimentalAddMove("z'");
               break;
           }
