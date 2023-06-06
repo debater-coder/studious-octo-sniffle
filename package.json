@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "prettier": "2.7.1",
-    "vite": "^3.0.2"
+    "vite": "^2.9.16"
   },
   "dependencies": {
     "cubing": "^0.26.6",
